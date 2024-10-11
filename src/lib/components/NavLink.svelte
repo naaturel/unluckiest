@@ -12,7 +12,7 @@
 
     a
     {
-        color: #303633;
+        color: #f1ecec;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -30,7 +30,7 @@
     a:hover
     {
         transform: scale(1.1);
-        color: #f1ecec;
+        color: #303633;
     }
 
 
