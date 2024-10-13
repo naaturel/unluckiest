@@ -1,5 +1,4 @@
 <script>
-	import '../app.css';
 
     import github_mark from '$lib/assets/github-mark-white.svg';
     import twitter_mark from '$lib/assets/twitter-mark-white.svg';
@@ -25,17 +24,15 @@
     <div class="burger"></div>
     <nav>
 
-        <NavLink --background-color="#f1ecec" link="/">Leaderboard</NavLink>
-        <NavLink --background-color="#f1ecec" link="/play">Play</NavLink>
-        <NavLink --background-color="#f1ecec" link="/about">About</NavLink>
+        <a href="/">Leaderboard</a>
+        <a href="/play">Play</a>
+        <a href="/about">About</a>
 
     </nav>
 </div>
 
 <div class="container">
-    <div class="row">
         <slot></slot>
-    </div>
 </div>
 
 <footer>

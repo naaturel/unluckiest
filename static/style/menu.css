@@ -1,4 +1,4 @@
-.b-a, .burger:after, .burger:before, .burger {
+.burger:after, .burger:before, .burger {
     transition: all 0.25s;
     content: "";
     position: absolute;
@@ -7,22 +7,6 @@
     width: 30px;
     border-radius: 15px;
     background-color: rgba(255, 255, 255, 0.95);
-}
-
-.menu-collapsed {
-    transition: all 0.25s;
-    position: fixed;
-    top: 10px;
-    left: 9px;
-    height: 36px;
-    width: 36px;
-    z-index: 1;
-    cursor: pointer;
-}
-.menu-collapsed a {
-    transition: all 0s;
-    position: fixed;
-    left: -9000px;
 }
 
 .burger {
@@ -39,18 +23,38 @@
     top: 8px;
 }
 
-.b-a-expanded, .menu-expanded .burger:after, .menu-expanded .burger:before {
+.menu-expanded .burger:after, .menu-expanded .burger:before {
     transition: all 0.25s;
     top: 0px;
+}
+
+.menu-collapsed {
+    transition: all 0.25s;
+    position: fixed;
+    top: 10px;
+    left: 9px;
+    height: 36px;
+    width: 36px;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.menu-collapsed a {
+    transition: all 0s;
+    position: fixed;
+    left: -9000px;
 }
 
 .menu-expanded {
     transition: all 0.25s;
     text-align: center;
     line-height: 200px;
+
     height: 100%;
     width: 100%;
+
     border-radius: 0px;
+
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.85);
@@ -59,6 +63,8 @@
 .menu-expanded a {
     transition: all 0s;
     position: relative;
+    width: 100vw;
+    height: 25vh;
     left: 0;
     z-index: 2;
 }
