@@ -1,7 +1,9 @@
 <script>
 
     import {onMount} from "svelte";
+    import {scoreStore} from "$lib/stores/scoreStore.ts";
 
+    let playerName = undefined;
     let range = 100;
     let result = 0;
 
@@ -23,6 +25,8 @@
 
         toggleLoading();
         window.$(".result").text(`Result : ${result}/${range}`)
+
+        scoreStore.add(playerName, result)
     }
 
     function toggleLoading(){
@@ -41,6 +45,7 @@
     </div>
 
     <div class="player">
+        <input class="name" placeholder="Your name" bind:value={playerName}/>
         <button on:click={roll}>Let's roll !</button>
         <div class="result"></div>
     </div>
@@ -48,18 +53,32 @@
 
 <style>
 
-    .disabled
-    {
-        display: none;
-    }
-
-    .container
+    .container, .player
     {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;
+    }
+
+    .disabled
+    {
+        display: none;
+    }
+
+    .player
+    {
+        gap: 2vh;
+    }
+
+    .name
+    {
+        width: 17vw;
+        height: 6vh;
+        border: 2px solid #A1674A;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #343232;
     }
 
     .circular-loader
@@ -79,7 +98,7 @@
     {
         color: black;
         width: 18vw;
-        height: 18vh;
+        height: 15vh;
         border-radius: 10px;
         background-color: #f1ecec;
         border: 2px solid #A1674A;
@@ -87,7 +106,7 @@
         box-shadow: 0 0 10px #343232;
     }
 
-    button:hover{
+    .name:hover, button:hover{
         transform: scale(1.1);
     }
 

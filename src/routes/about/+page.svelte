@@ -1,1 +1,1 @@
-<p>It was revealed to me in my dream</p>
+<p>It was revealed to me in a dream</p>

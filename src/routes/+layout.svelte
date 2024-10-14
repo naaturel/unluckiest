@@ -3,7 +3,6 @@
     import github_mark from '$lib/assets/github-mark-white.svg';
     import twitter_mark from '$lib/assets/twitter-mark-white.svg';
 
-    import NavLink from "$lib/components/NavLink.svelte";
     import {onMount} from "svelte";
 
     onMount(async () => {
