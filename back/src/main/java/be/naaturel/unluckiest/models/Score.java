@@ -10,4 +10,12 @@ public class Score {
         this.value = value;
     }
 
+    public String getOwner(){
+        return this.owner;
+    }
+
+    public int getValue(){
+        return this.value;
+    }
+
 }

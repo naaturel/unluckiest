@@ -8,7 +8,7 @@
 
     {#each scores as score, i}
         <li class="item">
-            <div class="name"><img src="" alt=""/> {score.playerName} </div><div class="score"> {score.value} pts.</div>
+            <div class="name"><img src="" alt=""/> {score.owner} </div><div class="score"> {score.value} pts.</div>
         </li>
     {/each}
 

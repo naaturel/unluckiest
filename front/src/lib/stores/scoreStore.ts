@@ -1,6 +1,7 @@
 import {writable} from "svelte/store";
 import {Score} from "../models/score";
 import {browser} from "$app/environment"
+import {getLeaderboard} from "./requests";
 
 let localStorageKey = "scores"
 
@@ -8,13 +9,12 @@ function isBrowser() {
     return typeof window !== 'undefined' && typeof window.localStorage !== 'undefined';
 }
 
-function createStore(){
+function createStore(scores : Score[]){
+    //const storedValue = isBrowser() ? localStorage.getItem(localStorageKey) : null;
 
-    const storedValue = isBrowser() ? localStorage.getItem(localStorageKey) : null;
+    const { set, update, subscribe } = writable<Score[]>(scores);
 
-    const { set, update, subscribe } = writable<Score[]>(!storedValue ? [] : JSON.parse(storedValue));
-
-    if (isBrowser()) subscribe(value => localStorage.setItem(localStorageKey, JSON.stringify(value)));
+    //if (isBrowser()) subscribe(value => localStorage.setItem(localStorageKey, JSON.stringify(value)));
 
     return {
         update,
@@ -31,4 +31,9 @@ function createStore(){
     };
 }
 
-export const scoreStore = createStore();
+async function createStoreFromAPI(){
+    let scores = await getLeaderboard();
+    return createStore(scores)
+}
+
+export const scoreStore= createStoreFromAPI();
