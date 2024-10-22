@@ -102,7 +102,6 @@
         border-radius: 10px;
         background-color: #f1ecec;
         border: 2px solid #A1674A;
-        background-size: 1800% 1800%;
         box-shadow: 0 0 10px #343232;
     }
 

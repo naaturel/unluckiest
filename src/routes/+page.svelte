@@ -4,6 +4,4 @@
 
 </script>
 
-<button on:click={() => {scoreStore.reset()}}>Clear leaderboard</button>
-
 <LeaderBoard bind:scores={$scoreStore}></LeaderBoard>
