@@ -7,9 +7,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class AppConfigurations {
 
-    @Value("${storage.location}")
-    public String storageLocation = "";
-
     @Value("${sec.cors.authorizedHots}")
     public String[] authorizedHosts;
 
@@ -18,6 +15,5 @@ public class AppConfigurations {
 
     @Value("${sec.cors.authorizedHeader}")
     public String[] authorizedHeaders;
-
 
 }
