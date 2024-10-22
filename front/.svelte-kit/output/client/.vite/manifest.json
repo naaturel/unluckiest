@@ -1,0 +1,143 @@
+{
+  ".svelte-kit/generated/client-optimized/app.js": {
+    "file": "_app/immutable/entry/app.BB-guR1A.js",
+    "name": "entry/app",
+    "src": ".svelte-kit/generated/client-optimized/app.js",
+    "isEntry": true,
+    "imports": [
+      "_preload-helper.C1FmrZbK.js",
+      "_scheduler.t-3xYmlC.js",
+      "_index.Dz99_Qdh.js"
+    ],
+    "dynamicImports": [
+      ".svelte-kit/generated/client-optimized/nodes/0.js",
+      ".svelte-kit/generated/client-optimized/nodes/1.js",
+      ".svelte-kit/generated/client-optimized/nodes/2.js",
+      ".svelte-kit/generated/client-optimized/nodes/3.js",
+      ".svelte-kit/generated/client-optimized/nodes/4.js"
+    ]
+  },
+  ".svelte-kit/generated/client-optimized/nodes/0.js": {
+    "file": "_app/immutable/nodes/0.BLjvgh0X.js",
+    "name": "nodes/0",
+    "src": ".svelte-kit/generated/client-optimized/nodes/0.js",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_preload-helper.C1FmrZbK.js",
+      "_scheduler.t-3xYmlC.js",
+      "_index.Dz99_Qdh.js"
+    ],
+    "dynamicImports": [
+      "_jquery.DayQ7gTg.js"
+    ]
+  },
+  ".svelte-kit/generated/client-optimized/nodes/1.js": {
+    "file": "_app/immutable/nodes/1.DltsNqkt.js",
+    "name": "nodes/1",
+    "src": ".svelte-kit/generated/client-optimized/nodes/1.js",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_scheduler.t-3xYmlC.js",
+      "_index.Dz99_Qdh.js",
+      "_entry.CWTQmo3s.js"
+    ]
+  },
+  ".svelte-kit/generated/client-optimized/nodes/2.js": {
+    "file": "_app/immutable/nodes/2.B0UqQsDX.js",
+    "name": "nodes/2",
+    "src": ".svelte-kit/generated/client-optimized/nodes/2.js",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_scheduler.t-3xYmlC.js",
+      "_index.Dz99_Qdh.js",
+      "_scoreStore.BJlEo5Dk.js"
+    ],
+    "css": [
+      "_app/immutable/assets/2.DxlxdAfj.css"
+    ]
+  },
+  ".svelte-kit/generated/client-optimized/nodes/3.js": {
+    "file": "_app/immutable/nodes/3.vi6sie8m.js",
+    "name": "nodes/3",
+    "src": ".svelte-kit/generated/client-optimized/nodes/3.js",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_scheduler.t-3xYmlC.js",
+      "_index.Dz99_Qdh.js"
+    ]
+  },
+  ".svelte-kit/generated/client-optimized/nodes/4.js": {
+    "file": "_app/immutable/nodes/4.69oG6wwC.js",
+    "name": "nodes/4",
+    "src": ".svelte-kit/generated/client-optimized/nodes/4.js",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_preload-helper.C1FmrZbK.js",
+      "_scheduler.t-3xYmlC.js",
+      "_index.Dz99_Qdh.js",
+      "_scoreStore.BJlEo5Dk.js"
+    ],
+    "dynamicImports": [
+      "_jquery.DayQ7gTg.js"
+    ],
+    "css": [
+      "_app/immutable/assets/4.T_78NcA1.css"
+    ]
+  },
+  "_entry.CWTQmo3s.js": {
+    "file": "_app/immutable/chunks/entry.CWTQmo3s.js",
+    "name": "entry",
+    "imports": [
+      "_scheduler.t-3xYmlC.js",
+      "_index.BEtjop6e.js"
+    ]
+  },
+  "_index.BEtjop6e.js": {
+    "file": "_app/immutable/chunks/index.BEtjop6e.js",
+    "name": "index",
+    "imports": [
+      "_scheduler.t-3xYmlC.js"
+    ]
+  },
+  "_index.Dz99_Qdh.js": {
+    "file": "_app/immutable/chunks/index.Dz99_Qdh.js",
+    "name": "index",
+    "imports": [
+      "_scheduler.t-3xYmlC.js"
+    ]
+  },
+  "_jquery.DayQ7gTg.js": {
+    "file": "_app/immutable/chunks/jquery.DayQ7gTg.js",
+    "name": "jquery",
+    "isDynamicEntry": true
+  },
+  "_preload-helper.C1FmrZbK.js": {
+    "file": "_app/immutable/chunks/preload-helper.C1FmrZbK.js",
+    "name": "preload-helper"
+  },
+  "_scheduler.t-3xYmlC.js": {
+    "file": "_app/immutable/chunks/scheduler.t-3xYmlC.js",
+    "name": "scheduler"
+  },
+  "_scoreStore.BJlEo5Dk.js": {
+    "file": "_app/immutable/chunks/scoreStore.BJlEo5Dk.js",
+    "name": "scoreStore",
+    "imports": [
+      "_index.BEtjop6e.js"
+    ]
+  },
+  "node_modules/@sveltejs/kit/src/runtime/client/entry.js": {
+    "file": "_app/immutable/entry/start.Dk8EHlvX.js",
+    "name": "entry/start",
+    "src": "node_modules/@sveltejs/kit/src/runtime/client/entry.js",
+    "isEntry": true,
+    "imports": [
+      "_entry.CWTQmo3s.js"
+    ]
+  }
+}
