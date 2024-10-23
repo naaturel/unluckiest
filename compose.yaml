@@ -61,7 +61,7 @@ services:
     - "80:80"
     - "443:443"
     volumes:
-      - /etc/letsencrypt/live/unluckiest.naaturel.be/:/etc/ssl/certs
+      - ./ssl/:/etc/ssl/
     networks:
       - unluckiest_network
     depends_on:
