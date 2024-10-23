@@ -7,29 +7,43 @@ class Score {
     this.value = value;
   }
 }
-let localStorageKey = "scores";
-function isBrowser() {
-  return typeof window !== "undefined" && typeof window.localStorage !== "undefined";
+const api_url = "http://naaturel.be:5000/api";
+async function getLeaderboard() {
+  return await handleRequest(
+    `${api_url}/api/leaderboard/`,
+    { method: "GET" }
+  );
 }
-function createStore() {
-  const storedValue = isBrowser() ? localStorage.getItem(localStorageKey) : null;
-  const { set, update, subscribe } = writable(!storedValue ? [] : JSON.parse(storedValue));
-  if (isBrowser()) subscribe((value) => localStorage.setItem(localStorageKey, JSON.stringify(value)));
+async function handleRequest(url, init) {
+  return await fetch(url, init).then((response) => {
+    if (response.status === 500) throw new Error(`${response.text()}`);
+    if (!response.ok) throw new Error(`${response.status} : ${response.body}`);
+    return response;
+  }).then((response) => {
+    return response.json();
+  }).catch((error) => {
+    return `Exception: ${error.message}`;
+  });
+}
+function createStore(scores) {
+  const { set, update, subscribe } = writable(scores);
   return {
     update,
     subscribe,
     set: (value) => set(!value ? [] : value),
     reset: () => set([]),
     add: (playerName, value) => {
-      update((scores) => {
-        let s = [...scores, new Score({ playerName, value })];
+      update((scores2) => {
+        let s = [...scores2, new Score({ playerName, value })];
         if (s.length >= 2) s.sort((s1, s2) => s1.value - s2.value);
         return s;
       });
     }
   };
 }
-const scoreStore = createStore();
-export {
-  scoreStore as s
-};
+async function createStoreFromAPI() {
+  console.log("http://naaturel.be:5000/api");
+  let scores = await getLeaderboard();
+  return createStore(scores);
+}
+createStoreFromAPI();

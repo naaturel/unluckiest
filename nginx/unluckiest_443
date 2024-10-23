@@ -1,0 +1,37 @@
+server {
+    listen 80;
+    server_name unluckiest.naaturel.be www.unluckiest.naaturel.be;
+    
+    # Redirect all HTTP requests to HTTPS
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name unluckiest.naaturel.be www.unluckiest.naaturel.be;
+
+    ssl_certificate /etc/ssl/certs/fullchain.pem;
+    ssl_certificate_key /etc/ssl/certs/privkey.pem;
+
+    location / {
+         proxy_pass http://webapp:3000;
+         proxy_http_version 1.1;
+         proxy_set_header Upgrade $http_upgrade;
+         proxy_set_header Connection 'upgrade';
+         proxy_set_header Host $host;
+         proxy_cache_bypass $http_upgrade;
+    }
+
+    location /api/ {
+        if ($request_uri ~ ^(.+)/$) {
+            return 301 $1;
+        }
+
+        proxy_pass http://api:5000/api/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}

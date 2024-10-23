@@ -6,6 +6,10 @@
 
 <ul class="leaderboard">
 
+    {#if scores.length === 0}
+        No scores for now...
+    {/if}
+
     {#each scores as score, i}
         <li class="item">
             <div class="name"><img src="" alt=""/> {score.owner} </div><div class="score"> {score.value} pts.</div>

@@ -50,7 +50,6 @@ public class Security {
         config.setAllowedOrigins(Arrays.asList(conf.authorizedHosts));
         config.setAllowedMethods(Arrays.asList(conf.authorizedMethods));
         config.setAllowedHeaders(Arrays.asList(conf.authorizedHeaders));
-        config.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);

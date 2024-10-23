@@ -1,8 +1,10 @@
 import {scoreStore} from "./scoreStore";
 import {Score} from "../models/score";
 
+const api_url = import.meta.env.VITE_API_URL
+
 export async function submitScore(owner: string, value : number){
-    return await handleRequest("http://localhost:8080/api/submit/",
+    return await handleRequest(`${api_url}/submit/`,
         {
             method:"POST",
             body : JSON.stringify({owner:owner, value:value}),
@@ -11,7 +13,7 @@ export async function submitScore(owner: string, value : number){
 }
 
 export async function getLeaderboard(){
-    return await handleRequest("http://localhost:8080/api/leaderboard",
+    return await handleRequest(`${api_url}/leaderboard/`,
         { method:"GET" });
 }
 

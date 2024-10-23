@@ -1,35 +1,69 @@
 volumes:
   unluckiest_database:
 
+networks:
+  unluckiest_network:
+    driver: bridge
+
 services:
 
   database:
-    image: mariadb:latest
-    container_name: database
+    build:
+      context : ./database
+      dockerfile : Dockerfile
     environment:
       - MARIADB_ROOT_PASSWORD=root
+      - DB_NAME=unluckiest_db
+      - DB_USER=unluckiest_user
+      - DB_PASSWORD=_nlckst_prod!
     volumes:
       - unluckiest_database:/var/lib/mysql
     networks:
-      -  unluckiest_network
-    ports:
-      - "9000:3306"
+      - unluckiest_network
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 15s
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
   api:
     container_name: api
     build:
       context: ./back
       dockerfile: Dockerfile
-    ports:
-      - "8000:8000"
     environment:
-      DB_URL: mysql://mariadb_test:3306/unluckiest_database
-      DB_USER: user
-      DB_PASSWORD: _unlckst_prod!
+      DB_URL: mysql://database:3306/unluckiest_db
+      DB_USER: unluckiest_user
+      DB_PASSWORD: _nlckst_prod!
     networks:
-      - storage_network
+      - unluckiest_network
     depends_on:
-      - database
+      database:
+        condition: service_healthy
 
-networks:
-  unluckiest_network:
+  webapp:
+    container_name : webapp
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    networks:
+      - unluckiest_network
+    depends_on:
+      - api
+
+  reverse_proxy:
+    container_name : reverse_proxy
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+    - "80:80"
+    - "443:443"
+    volumes:
+      - ./certs:/etc/ssl/certs
+      - ./certs:/etc/ssl/private
+    networks:
+      - unluckiest_network
+    depends_on:
+      - webapp

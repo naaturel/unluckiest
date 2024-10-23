@@ -12,7 +12,7 @@ public interface ScoreRepo
         extends JpaRepository<ScoreEntity, String> {
 
     @Query(
-            value = "SELECT * FROM Score s HAVING 10;",
+            value = "SELECT * FROM score s HAVING 10;",
             nativeQuery = true)
 
     List<ScoreEntity> findLeaderboard();
