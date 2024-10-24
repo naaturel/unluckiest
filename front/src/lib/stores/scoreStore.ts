@@ -1,7 +1,7 @@
 import {writable} from "svelte/store";
 import {Score} from "../models/score";
 import {browser} from "$app/environment"
-import {getLeaderboard} from "./requests";
+import {getLeaderboard, submitScore} from "./requests";
 
 let localStorageKey = "scores"
 
@@ -21,7 +21,10 @@ function createStore(scores : Score[]){
         subscribe,
         set : (value : Score[]) => set(!value ? [] : value),
         reset : () => set([]),
-        add : (playerName : string, value : number) =>  {
+        add : async (playerName : string, value : number) =>  {
+
+            await submitScore(playerName, value)
+
             update(scores => {
                 let s = [...scores, new Score({playerName : playerName, value : value})];
                 if(s.length >= 2) s.sort((s1 : Score, s2 : Score) =>  s1.value - s2.value)
