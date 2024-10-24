@@ -20,7 +20,7 @@ public class ScoreController {
         this.scoreRepo = scoreRepo;
     }
 
-    @PostMapping({"/api/submit", "/api/submit/"})
+    @PostMapping({"/submit", "/submit/"})
     public ResponseEntity<?> submit(@RequestBody Score s){
 
         ScoreEntity se = new ScoreEntity();
@@ -36,7 +36,7 @@ public class ScoreController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping({"/api/leaderboard", "/api/leaderboard/"})
+    @GetMapping({"/leaderboard", "/leaderboard/"})
     public ResponseEntity<?> leaderboard(){
         return ResponseEntity.ok(scoreRepo.findLeaderboard());
     }
