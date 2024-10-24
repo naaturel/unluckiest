@@ -3,6 +3,8 @@
     import {onMount} from "svelte";
     import {scoreStore} from "$lib/stores/scoreStore.ts";
 
+    let scores;
+
     let playerName = undefined;
     let range = 100;
     let result = 0;
@@ -26,7 +28,7 @@
         toggleLoading();
         window.$(".result").text(`Result : ${result}/${range}`)
 
-        scoreStore.add(playerName, result)
+        await scoreStore.add(playerName, result)
     }
 
     function toggleLoading(){

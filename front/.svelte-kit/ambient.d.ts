@@ -26,7 +26,8 @@
  * ```
  */
 declare module '$env/static/private' {
-	export const VITE_API_URL: string;
+	export const VITE_CLIENT_API_URL: string;
+	export const VITE_SERVER_API_URL: string;
 	export const ALLUSERSPROFILE: string;
 	export const APPDATA: string;
 	export const CLion: string;
@@ -133,7 +134,8 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
-		VITE_API_URL: string;
+		VITE_CLIENT_API_URL: string;
+		VITE_SERVER_API_URL: string;
 		ALLUSERSPROFILE: string;
 		APPDATA: string;
 		CLion: string;

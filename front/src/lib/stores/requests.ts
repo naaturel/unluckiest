@@ -1,7 +1,7 @@
 import {scoreStore} from "./scoreStore";
 import {Score} from "../models/score";
 
-const api_url = import.meta.env.VITE_API_URL
+const api_url = import.meta.env.VITE_CLIENT_API_URL
 
 export async function submitScore(owner: string, value : number){
     return await handleRequest(`${api_url}/submit/`,
