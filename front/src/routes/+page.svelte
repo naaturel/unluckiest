@@ -1,11 +1,13 @@
 <script>
-    import { onMount } from 'svelte';
-    import { scoreStore } from "$lib/stores/scoreStore.ts";
     import LeaderBoard from "$lib/components/LeaderBoard.svelte";
+    import {scoreStore} from "$lib/stores/scoreStore.ts";
+    import {onMount} from "svelte";
+
+    let { data } = $props()
 
     onMount(async () => {
-        await scoreStore.loadData();
-    });
+        scoreStore.load(data.leaderboard)
+    } )
 
 </script>
 

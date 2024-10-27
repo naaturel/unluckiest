@@ -26,9 +26,8 @@ function createStore(){
             });
         },
 
-        loadData: async () => {
-            if(scores.length !== 0) return;
-            let res = sort(await getLeaderboard());
+        load:  (data : Score[]) => {
+            let res = sort(data);
             set(res);
         },
     };

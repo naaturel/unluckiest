@@ -18,7 +18,14 @@ h1
 
 html
 {
-    background: linear-gradient(45deg, #b9b9c9, #d2379b);
+    background-image: url("../images/background.png");
+    background-repeat:no-repeat;
+    -webkit-background-size:cover;
+    -moz-background-size:cover;
+    -o-background-size:cover;
+    background-size:cover;
+    background-position:center;
+    /*background: linear-gradient(45deg, #b9b9c9, #d2379b);*/
 }
 
 body

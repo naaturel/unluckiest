@@ -98,11 +98,12 @@
 
     button
     {
+        background-color: #f1ecec;
+
         color: black;
         width: 18vw;
         height: 15vh;
         border-radius: 10px;
-        background-color: #f1ecec;
         border: 2px solid #A1674A;
         box-shadow: 0 0 10px #343232;
     }
