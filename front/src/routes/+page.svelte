@@ -9,6 +9,7 @@
         scoreStore.load(data.leaderboard)
     } )
 
+
 </script>
 
 <LeaderBoard bind:scores={$scoreStore}></LeaderBoard>

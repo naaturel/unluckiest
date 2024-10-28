@@ -5,7 +5,8 @@
 </script>
 
 <ul class="leaderboard">
-
+	
+    
     {#if scores.length === 0}
         No scores for now...
     {/if}
