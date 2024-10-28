@@ -12,7 +12,7 @@
 
     {#each scores as score, i}
         <li class="item">
-            <div class="name"><img src="" alt=""/> {score.owner} </div><div class="score"> {score.value} pts.</div>
+            <div class="name"> {score.owner} </div><div class="score"> {score.value} pts.</div>
         </li>
     {/each}
 
@@ -37,27 +37,34 @@
         display: none;
     }
 
-    li
+    .item
     {
         display: flex;
         justify-content: space-around;
         padding: 1.25vh;
         margin: 1.5vh;
-        border: 2px solid #A1674A;
+        background-color: #fcdcab;
+        border: 3px solid #4b0611;
         border-radius: 10px;
-        background-color: #f1ecec;
-        box-shadow: 0 0 10px #343232;
+        box-shadow: 5px 5px #4b0611;
+        text-align: left;
+        outline: none;
     }
 
-    li:hover
+    div.item
     {
+        width: 55vw;
+    }
+
+    .item:hover
+    {
+        background-color: #dd3328;
         transform: scale(1.075);
-        background-color: #F5F5F5;
     }
 
     .name, .score
     {
-        color: black;
+        color: #4b0611;
         margin-left: 3vh;
     }
 

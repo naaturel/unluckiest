@@ -1,21 +1,13 @@
 <script>
 
-    import {onMount} from "svelte";
     import {scoreStore} from "$lib/stores/scoreStore.ts";
+    import bomb from '$lib/assets/bomb.svg';
 
     let scores;
 
     let playerName = undefined;
     let range = 100;
     let result = 0;
-
-    onMount(async () => {
-        const jQuery = await import('jquery');
-        const $ = jQuery.default;
-
-        window.$ = $;
-        window.jQuery = $;
-    });
 
     async function roll() {
 
@@ -47,8 +39,10 @@
     </div>
 
     <div class="player">
-        <input class="name" placeholder="Your name" bind:value={playerName}/>
-        <button on:click={roll}>Let's roll !</button>
+        <input class="name" placeholder="Nom de la victime..." bind:value={playerName}/>
+
+        <img class="roll" src={bomb} on:click={roll} alt="Bomb"/>
+
         <div class="result"></div>
     </div>
 </div>
@@ -76,11 +70,16 @@
 
     .name
     {
-        width: 17vw;
-        height: 6vh;
-        border: 2px solid #A1674A;
+        width: 22vmax;
+        height: 5vh;
+        background-color: #fcdcab;
+        border: 3px solid #4b0611;
         border-radius: 10px;
-        box-shadow: 0 0 10px #343232;
+        box-shadow: 5px 5px #4b0611;
+        text-align: left;
+        padding-left: 30px;
+        padding-right: 30px;
+        outline: none;
     }
 
     .circular-loader
@@ -96,19 +95,7 @@
         height: 25vh;
     }
 
-    button
-    {
-        background-color: #f1ecec;
-
-        color: black;
-        width: 18vw;
-        height: 15vh;
-        border-radius: 10px;
-        border: 2px solid #A1674A;
-        box-shadow: 0 0 10px #343232;
-    }
-
-    .name:hover, button:hover{
+    .name:hover, .roll:hover{
         transform: scale(1.1);
     }
 

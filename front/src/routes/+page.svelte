@@ -7,9 +7,21 @@
 
     onMount(async () => {
         scoreStore.load(data.leaderboard)
-    } )
+    })
 
 </script>
 
+
+
+<h1>Phrase d'accroche</h1>
 <LeaderBoard bind:scores={$scoreStore}></LeaderBoard>
 
+<style>
+
+    h1
+    {
+        color: #4b0611;
+        text-decoration: underline;
+    }
+
+</style>

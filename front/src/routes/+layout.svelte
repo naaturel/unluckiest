@@ -1,33 +1,57 @@
 <script>
-
     import github_mark from '$lib/assets/github-mark-white.svg';
     import twitter_mark from '$lib/assets/twitter-mark-white.svg';
+    import leaderboard from '$lib/assets/leaderboard.svg';
+    import dice from '$lib/assets/dice.svg';
+    import about from '$lib/assets/about.svg';
+    import logo from '$lib/assets/logo2.png'
 
     import {onMount} from "svelte";
+    import SplashScreen from "$lib/components/SplashScreen.svelte";
 
     onMount(async () => {
-        const jQuery = await import('jquery');
-        const $ = jQuery.default;
-
-        window.$ = $;
-        window.jQuery = $;
-
-        window.$(".menu-collapsed").click(function () {
+        /*window.$(".menu-collapsed").click(function () {
             window.$(this).toggleClass("menu-expanded");
-        });
+        });*/
     });
 
 </script>
 
-<div class="menu-collapsed">
+<!--<SplashScreen/>-->
+
+<div class="menu">
+
     <div class="burger"></div>
+
     <nav>
+        <a href="/">
+            <img src={leaderboard}
+                height="30"
+                width="30"
+                alt="leaderboard"
+            >
+            <div>Leaderboard</div>
+        </a>
 
-        <a href="/">Leaderboard</a>
-        <a href="/play">Play</a>
-        <a href="/about">About</a>
+        <a href="/play">
+            <img src={dice}
+                height="30"
+                width="30"
+                alt="dice"
+            >
+            <div>Play</div>
+        </a>
 
+        <a href="/about">
+            <img src={about}
+                height="30"
+                width="30"
+                alt="about"
+            >
+            <div>About</div>
+        </a>
     </nav>
+
 </div>
 
 <div class="container">
@@ -35,7 +59,13 @@
 </div>
 
 <footer>
-    <a href="https://github.com/naaturel">
+
+    <img src="{logo}"
+         height="175px"
+         width="auto"
+         alt="Logo">
+
+    <!--<a href="https://github.com/naaturel">
         <img
                 src={github_mark}
                 height="30"
@@ -49,5 +79,5 @@
                 height="30"
                 width="30"
                 alt="Twitter mark"/>
-    </a>
+    </a>-->
 </footer>
