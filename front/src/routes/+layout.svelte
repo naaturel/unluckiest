@@ -17,7 +17,7 @@
 
 </script>
 
-<!--<SplashScreen/>-->
+<SplashScreen/>-
 
 <div class="menu">
 
