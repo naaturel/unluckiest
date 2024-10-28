@@ -5,52 +5,54 @@
     import dice from '$lib/assets/dice.svg';
     import about from '$lib/assets/about.svg';
     import logo from '$lib/assets/logo2.png'
+    import arrow from '$lib/assets/arrow.svg'
 
     import {onMount} from "svelte";
     import SplashScreen from "$lib/components/SplashScreen.svelte";
 
     onMount(async () => {
-        /*window.$(".menu-collapsed").click(function () {
-            window.$(this).toggleClass("menu-expanded");
-        });*/
+        window.$(".expander").click(function () {
+            window.$(".menu").toggleClass("menu-collapsed menu-expanded");
+        });
     });
 
 </script>
 
-<SplashScreen/>-
+<SplashScreen/>
 
-<div class="menu">
+<div class="menu menu-collapsed">
 
-    <div class="burger"></div>
-
-    <nav>
-        <a href="/">
-            <img src={leaderboard}
-                height="30"
-                width="30"
-                alt="leaderboard"
-            >
-            <div>Leaderboard</div>
+        <a class="expander">
+            <img class="item-hint" src={arrow}
+                 height="30"
+                 width="30"
+                 alt="arrow">
         </a>
 
-        <a href="/play">
-            <img src={dice}
-                height="30"
-                width="30"
-                alt="dice"
-            >
-            <div>Play</div>
+        <a href="/" class="menu-item">
+            <img class="item-hint" src={leaderboard}
+                 height="30"
+                 width="30"
+                 alt="leaderboard">
+            <div class="item-title">Leaderboard</div>
         </a>
 
-        <a href="/about">
-            <img src={about}
-                height="30"
-                width="30"
-                alt="about"
-            >
-            <div>About</div>
+        <a href="/play" class="menu-item">
+            <img class="item-hint" src={dice}
+                 height="30"
+                 width="30"
+                 alt="dice">
+            <div class="item-title">Play</div>
         </a>
-    </nav>
+
+        <a href="/about" class="menu-item">
+            <img class="item-hint" src={about}
+                 height="30"
+                 width="30"
+                 alt="about"
+            >
+            <div class="item-title">About</div>
+        </a>
 
 </div>
 

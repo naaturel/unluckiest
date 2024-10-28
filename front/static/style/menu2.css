@@ -1,5 +1,4 @@
-.menu {
-    font-family: 'Roboto', sans-serif;
+.menu-collapsed, .menu-expanded {
     position: fixed;
     top: 0;
     left: 0;
@@ -13,51 +12,60 @@
     transition: width .3s;
 }
 
-.menu:hover {
-    width: 300px;
+.menu-collapsed .menu-item{
+    display: none;
 }
 
-.menu nav {
+.menu-expanded, .menu-collapsed {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: start;
 }
 
-.menu nav a {
+.menu-expanded {
+    width: 300px;
+}
+
+.expander, .menu-item {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
     margin: 15px 30px 0 5px;
     border-radius: 5px;
     height: fit-content;
     width: 250px;
 }
 
-.menu nav a {
-    font-size: .9rem;
+.expander, .menu-item {
     text-decoration: none;
     margin: 15px 5px 5px 5px;
     padding: 5px;
 }
 
-.menu nav a div {
+.item-title {
+    margin-left: 5%;
     color: #4b0611;
 }
 
-.menu nav a:hover,
-.menu nav:first-child a {
+.menu-item:hover {
     background: #dd3328;
 }
 
+.menu-item .item-hint:hover {
+    transition: 0.3s;
+    transform: rotate(360deg);
+}
+
+.menu-expanded .expander .item-hint {
+    transform: rotate(180deg);
+}
+
 @media screen and (max-width: 600px) {
-    .menu
-    {
+    .menu-collapsed {
         width: 45px
     }
 
-    .menu a img {
+    .item-hint {
         width: 20px;
         height: 20px;
     }

@@ -11,8 +11,6 @@
 
 </script>
 
-
-
 <h1>Phrase d'accroche</h1>
 <LeaderBoard bind:scores={$scoreStore}></LeaderBoard>
 
