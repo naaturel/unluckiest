@@ -11,7 +11,7 @@
 
 </script>
 
-<h1>Phrase d'accroche</h1>
+<h1>Qui va y passer ?</h1>
 <LeaderBoard bind:scores={$scoreStore}></LeaderBoard>
 
 <style>

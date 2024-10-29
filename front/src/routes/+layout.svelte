@@ -34,7 +34,7 @@
                  height="30"
                  width="30"
                  alt="leaderboard">
-            <div class="item-title">Leaderboard</div>
+            <div class="item-title">Revue nécrologique</div>
         </a>
 
         <a href="/play" class="menu-item">
@@ -42,7 +42,7 @@
                  height="30"
                  width="30"
                  alt="dice">
-            <div class="item-title">Play</div>
+            <div class="item-title">Tenter sa chance</div>
         </a>
 
         <a href="/about" class="menu-item">
@@ -51,7 +51,7 @@
                  width="30"
                  alt="about"
             >
-            <div class="item-title">About</div>
+            <div class="item-title">A propos</div>
         </a>
 
 </div>
