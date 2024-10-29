@@ -45,7 +45,7 @@
         display: flex;
         flex-direction: column;
 
-        width: 60vw;
+        width: 75vw;
         height: 65vh;
 
         padding: 0 2vw 2vw 2vw;
@@ -84,20 +84,19 @@
 
     .name, .score
     {
-        margin-left: 3vh;
-        padding-left: 10px;
-        margin-right: 2vw;
+        padding-left: 7px;
         border-left: 1px solid #A1674A;
     }
 
     .position
     {
         flex-grow: 5;
-        text-align: start;
+        text-align: center;
     }
 
     .name
     {
+        word-break: break-word;
         flex-grow: 100;
     }
 
@@ -105,11 +104,6 @@
     {
         flex-grow: 10;
         text-align: center;
-    }
-
-    .paging-arrow:hover
-    {
-        transform: scale(1.5);
     }
 
 </style>
