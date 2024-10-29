@@ -91,6 +91,7 @@
     .position
     {
         flex-grow: 5;
+        margin-right: 10px;
         text-align: center;
     }
 
@@ -104,6 +105,13 @@
     {
         flex-grow: 10;
         text-align: center;
+    }
+
+    @media screen and (min-width: 601px) {
+        .leaderboard
+        {
+            width: 55vw;
+        }
     }
 
 </style>
