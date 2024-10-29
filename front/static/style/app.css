@@ -10,6 +10,12 @@
     }
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 *
 {
     color: #F5F5F5;
@@ -18,9 +24,23 @@
     transition: 0.3s;
 }
 
+/* For debugging purposes
+* {
+    outline: 1px solid #2600ff;
+}
+*/
 h1
 {
     font-size: calc(var(--font-size, 1vw) * 2.15);
+}
+
+html, body
+{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
 html
@@ -42,8 +62,6 @@ body
 
     align-items: center;
     justify-content: center;
-
-    height: 98vh;
 }
 
 .container
@@ -125,13 +143,18 @@ footer
     align-items: center;
 
     position: absolute;
-    bottom: 0.25vh;
-    margin-bottom: 0.25vh;
+    bottom: 0;
 
     width: 100vw;
-    height: fit-content;
+    height: 10vh;
 }
 
 footer a {
     margin-right: 2vh;
+}
+
+.footer-logo {
+    height: 100%;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }

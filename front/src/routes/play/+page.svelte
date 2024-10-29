@@ -12,15 +12,19 @@
     async function roll() {
 
         toggleLoading();
-
-        result = Math.floor(Math.random() * (range + 1));
-
+        result = getRandomNumber();
         await new Promise(r => setTimeout(r, 3000));
 
         toggleLoading();
         window.$(".result").text(`Result : ${result}/${range}`)
 
         await scoreStore.add(playerName, result)
+    }
+
+    function getRandomNumber(){
+        let unit = Math.floor(Math.random() * (range + 1));
+        let dec = Math.floor(Math.random() * (range));
+        return unit + (dec/100);
     }
 
     function toggleLoading(){
@@ -70,6 +74,7 @@
 
     .name
     {
+        min-width: 210px;
         width: 22vmax;
         height: 5vh;
         background-color: #fcdcab;
@@ -97,6 +102,10 @@
 
     .name:hover, .roll:hover{
         transform: scale(1.1);
+    }
+
+    .name::placeholder
+    {
     }
 
     @keyframes rotate {

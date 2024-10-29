@@ -5,7 +5,7 @@ import {getLeaderboard, submitScore} from "./requests";
 let scores : Score[] = []
 
 function sort(scores : Score[]){
-    if(scores.length >= 2) scores.sort((s1 : Score, s2 : Score) =>  s1.value - s2.value)
+    if(scores.length >= 2) scores.sort((s1 : Score, s2 : Score) =>  s2.value - s1.value)
     return scores;
 }
 

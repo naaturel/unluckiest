@@ -4,7 +4,7 @@
     import leaderboard from '$lib/assets/leaderboard.svg';
     import dice from '$lib/assets/dice.svg';
     import about from '$lib/assets/about.svg';
-    import logo from '$lib/assets/logo2.png'
+    import logo from '$lib/assets/logo.svg'
     import arrow from '$lib/assets/arrow.svg'
 
     import {onMount} from "svelte";
@@ -57,15 +57,13 @@
 </div>
 
 <div class="container">
+
         <slot></slot>
 </div>
 
 <footer>
 
-    <img src="{logo}"
-         height="175px"
-         width="auto"
-         alt="Logo">
+    <img class="footer-logo" src="{logo}" alt="Logo">
 
     <!--<a href="https://github.com/naaturel">
         <img

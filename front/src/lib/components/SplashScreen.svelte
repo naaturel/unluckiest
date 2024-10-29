@@ -1,10 +1,10 @@
 <script>
-    import logo from '$lib/assets/logo.png'
+    import logo from '$lib/assets/logo.svg'
 
 </script>
 
     <div class="splash" >
-        <img class="logo" src={logo} alt="De Charybde en Scylla">
+        <img class="footer-logo" src={logo} alt="Splashscreen">
     </div>
 
 <style>
@@ -22,7 +22,7 @@
         animation: fadeout 2.5s forwards;
     }
 
-    .logo
+    .footer-logo
     {
         width: auto;
         height: 25%;
