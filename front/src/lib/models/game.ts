@@ -1,30 +1,23 @@
-import {scoreStore} from "../stores/scoreStore";
-
 export class Game {
 
-    public name : string;
+    public playerName : string;
     public result : number;
     public state : GameState;
     private readonly range : number;
 
     constructor() {
-        this.name = "";
+        this.playerName = "";
         this.result = -1;
         this.state = GameState.Unplayed;
         this.range = 100
     }
 
-    public async play() {
+    public play() {
         this.result = this.getRandomNumber();
-        await scoreStore.add(this.name, this.result)
     }
 
-    public hasBeenPlayed() : boolean {
-        return this.state == GameState.Played;
-    }
-
-    public isRunning() : boolean {
-        return this.state == GameState.Running;
+    public playerExists() : boolean{
+        return false;
     }
 
     private getRandomNumber() : number{
