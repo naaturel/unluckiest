@@ -29,6 +29,7 @@
     {/if}
 
     {#if !isRunning && !hasBeenPlayed}
+        <h1>Evaluez vos chances de survie</h1>
         <div class="player">
             <input class="name" placeholder="Nom de la victime..." bind:value={game.name}/>
 
@@ -59,14 +60,19 @@
         gap: 2vh;
     }
 
+    .name, .roll
+    {
+        min-width: 210px;
+        width: 22vmax;
+    }
+
     .name
     {
         color: #424242;
         background-color: #fcdcab;
 
-        min-width: 210px;
-        width: 22vmax;
-        height: 5vh;
+        height: 6vh;
+        min-height: 50px;
 
         border: 3px solid #4b0611;
         border-radius: 10px;
@@ -79,6 +85,11 @@
         padding-right: 30px;
 
         outline: none;
+    }
+
+    .result
+    {
+        font-size: 24px;
     }
 
     .circular-loader

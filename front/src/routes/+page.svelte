@@ -13,13 +13,3 @@
 
 <h1>Qui va y passer ?</h1>
 <LeaderBoard bind:scores={$scoreStore}></LeaderBoard>
-
-<style>
-
-    h1
-    {
-        color: #4b0611;
-        text-decoration: underline;
-    }
-
-</style>
