@@ -74,16 +74,23 @@
 
     .name
     {
+        color: #424242;
+        background-color: #fcdcab;
+
         min-width: 210px;
         width: 22vmax;
         height: 5vh;
-        background-color: #fcdcab;
+
         border: 3px solid #4b0611;
         border-radius: 10px;
         box-shadow: 5px 5px #4b0611;
+
         text-align: left;
+
+        margin: 1.5vh;
         padding-left: 30px;
         padding-right: 30px;
+
         outline: none;
     }
 
@@ -102,10 +109,6 @@
 
     .name:hover, .roll:hover{
         transform: scale(1.1);
-    }
-
-    .name::placeholder
-    {
     }
 
     @keyframes rotate {

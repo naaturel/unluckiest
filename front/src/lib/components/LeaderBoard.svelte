@@ -108,10 +108,7 @@
     }
 
     @media screen and (min-width: 601px) {
-        .leaderboard
-        {
-            width: 55vw;
-        }
+        .leaderboard { width: 55vw; }
     }
 
 </style>
