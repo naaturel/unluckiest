@@ -1,54 +1,46 @@
 <script>
-
-    import {scoreStore} from "$lib/stores/scoreStore.ts";
     import bomb from '$lib/assets/bomb.svg';
+    import {Game, GameState} from "$lib/models/game.ts";
 
     let scores;
+    let game = new Game();
 
-    let playerName = undefined;
-    let range = 100;
-    let result = 0;
+    $: isRunning = game.state === GameState.Running;
+    $: hasBeenPlayed = game.state === GameState.Played;
 
-    async function roll() {
-
-        toggleLoading();
-        result = getRandomNumber();
+    async function roll(){
+        game.state = GameState.Running;
+        await game.play()
         await new Promise(r => setTimeout(r, 3000));
-
-        toggleLoading();
-        window.$(".result").text(`Result : ${result}/${range}`)
-
-        await scoreStore.add(playerName, result)
-    }
-
-    function getRandomNumber(){
-        let unit = Math.floor(Math.random() * (range + 1));
-        let dec = Math.floor(Math.random() * (range));
-        return unit + (dec/100);
-    }
-
-    function toggleLoading(){
-        window.$(".loader").toggleClass("disabled");
-        window.$(".player").toggleClass("disabled");
+        game.state = GameState.Played;
     }
 
 </script>
 
 <div class="container">
-    <div class="loader disabled">
-        <svg class="circular-loader" viewBox="0 0 30 30">
-            <circle class="loader-path" cx="15" cy="15" r="5" fill="none" stroke="#f1ecec" stroke-width="0.7" />
-        </svg>
-        <div class="info">Rolling a random numbers within range 0-{range}...</div>
-    </div>
 
-    <div class="player">
-        <input class="name" placeholder="Nom de la victime..." bind:value={playerName}/>
+    {#if isRunning}
+        <div class="loader">
+            <svg class="circular-loader" viewBox="0 0 30 30">
+                <circle class="loader-path" cx="15" cy="15" r="5" fill="none" stroke="#4b0611" stroke-width="0.7" />
+            </svg>
+            <div class="info">Massacre en cours...</div>
+        </div>
+    {/if}
 
-        <img class="roll" src={bomb} on:click={roll} alt="Bomb"/>
+    {#if !isRunning && !hasBeenPlayed}
+        <div class="player">
+            <input class="name" placeholder="Nom de la victime..." bind:value={game.name}/>
 
-        <div class="result"></div>
-    </div>
+            <img class="roll" src={bomb} on:click={roll} alt="Bomb"/>
+
+        </div>
+    {/if}
+
+    {#if hasBeenPlayed}
+        <div class="result">Vous avez {game.result}% de chance de mourir</div>
+    {/if}
+
 </div>
 
 <style>
@@ -60,11 +52,6 @@
         justify-content: center;
         align-items: center;
         text-align: center;
-    }
-
-    .disabled
-    {
-        display: none;
     }
 
     .player
