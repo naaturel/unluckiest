@@ -57,7 +57,7 @@
 
 </script>
 
-<PageTitle>Évaluez vos chance de survie</PageTitle>
+<PageTitle>Évaluez vos chances de survie</PageTitle>
 <div class="container">
 
     {#if isRunning}
