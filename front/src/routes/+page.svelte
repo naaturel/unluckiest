@@ -2,6 +2,7 @@
     import LeaderBoard from "$lib/components/LeaderBoard.svelte";
     import {scoreStore} from "$lib/stores/scoreStore.ts";
     import {onMount} from "svelte";
+    import PageTitle from "$lib/components/PageTitle.svelte";
 
     let { data } = $props()
 
@@ -11,5 +12,5 @@
 
 </script>
 
-<h1>Qui va y passer ?</h1>
+<PageTitle>Qui va y passer ?</PageTitle>
 <LeaderBoard bind:scores={$scoreStore}></LeaderBoard>

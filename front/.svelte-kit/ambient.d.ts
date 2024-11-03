@@ -42,10 +42,8 @@ declare module '$env/static/private' {
 	export const DB_USER: string;
 	export const DriverData: string;
 	export const EDITOR: string;
-	export const EFC_9904: string;
+	export const EFC_10880: string;
 	export const ffmpeg: string;
-	export const FPS_BROWSER_APP_PROFILE_STRING: string;
-	export const FPS_BROWSER_USER_PROFILE_STRING: string;
 	export const HOME: string;
 	export const HOMEDRIVE: string;
 	export const HOMEPATH: string;
@@ -150,10 +148,8 @@ declare module '$env/dynamic/private' {
 		DB_USER: string;
 		DriverData: string;
 		EDITOR: string;
-		EFC_9904: string;
+		EFC_10880: string;
 		ffmpeg: string;
-		FPS_BROWSER_APP_PROFILE_STRING: string;
-		FPS_BROWSER_USER_PROFILE_STRING: string;
 		HOME: string;
 		HOMEDRIVE: string;
 		HOMEPATH: string;

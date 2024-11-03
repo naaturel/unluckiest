@@ -2,6 +2,7 @@
     import bomb from '$lib/assets/bomb.svg';
     import {Game, GameState} from "$lib/models/game.ts";
     import {scoreStore} from "$lib/stores/scoreStore.ts";
+    import PageTitle from "$lib/components/PageTitle.svelte";
 
     let game = new Game();
 
@@ -15,20 +16,11 @@
         timer = setTimeout(() => {
             try{
                 validate(inputValue)
-                clearError();
                 game.playerName = inputValue;
             } catch (e){
                 displayError(e.message)
             }
         }, 150);
-    }
-
-    function validate(data){
-        if(!data) throw new Error("Veuillez indiquer votre nom.");
-        $scoreStore.forEach(v => {
-            if(v.owner && v.owner.toLowerCase() === data.toLowerCase()) throw new Error("Ce joueur existe déjà");
-        })
-
     }
 
     async function roll(){
@@ -45,8 +37,18 @@
         }
     }
 
+    function validate(data){
+        if(!data) throw new Error("Veuillez indiquer votre nom.");
+        $scoreStore.forEach(v => {
+            if(v.owner && v.owner.toLowerCase() === data.toLowerCase()) throw new Error("Cette personne a déjà été évaluée.");
+        })
+    }
+
     function displayError(message){
         window.$(".player").attr('tooltip', message)
+        setTimeout(() => {
+            clearError();
+        }, 3000)
     }
 
     function clearError(){
@@ -55,6 +57,7 @@
 
 </script>
 
+<PageTitle>Évaluez vos chance de survie</PageTitle>
 <div class="container">
 
     {#if isRunning}
@@ -67,20 +70,17 @@
     {/if}
     {#if !isRunning && !hasBeenPlayed}
 
-        <h1>Evaluez vos chances de survie</h1>
         <div class="player"
              tooltip=""
              flow="up">
             <input class="name" placeholder="Nom de la victime..."
-
                    bind:value={game.playerName}
                    on:input={({ target: { value } }) => debounce(value)}
                    on:blur={({ target: { value } }) => debounce(value)}
             />
-
+            <img class="roll" src={bomb} on:click={roll} alt="Bomb"/>
         </div>
 
-        <img class="roll" src={bomb} on:click={roll} alt="Bomb"/>
 
     {/if}
 
@@ -92,7 +92,17 @@
 
 <style>
 
-    .container, .player
+    .container
+    {
+        line-height: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .player
     {
         display: flex;
         flex-direction: column;
@@ -100,6 +110,8 @@
         align-items: center;
         text-align: center;
     }
+
+
 
     .player
     {
@@ -170,7 +182,7 @@
     [tooltip]::before,
     [tooltip]::after {
         text-transform: none; /* opinion 2 */
-        font-size: .9em; /* opinion 3 */
+
         line-height: 1;
         user-select: none;
         pointer-events: none;
@@ -187,7 +199,6 @@
         content: attr(tooltip); /* magic! */
 
         /* most of the rest of this is opinion */
-        font-family: Helvetica, sans-serif;
         text-align: center;
 
         /*
@@ -243,13 +254,6 @@
         to {
             opacity: .9;
             transform: translate(-50%, 0);
-        }
-    }
-
-    @keyframes tooltips-horz {
-        to {
-            opacity: .9;
-            transform: translate(0, -50%);
         }
     }
 

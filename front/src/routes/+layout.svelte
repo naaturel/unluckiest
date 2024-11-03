@@ -9,6 +9,7 @@
 
     import {onMount} from "svelte";
     import SplashScreen from "$lib/components/SplashScreen.svelte";
+    import PageTitle from "$lib/components/PageTitle.svelte";
 
     onMount(async () => {
         window.$(".expander").click(function () {
@@ -19,7 +20,6 @@
 </script>
 
 <SplashScreen/>
-
 <div class="menu menu-collapsed">
 
         <a class="expander">
@@ -57,7 +57,6 @@
 </div>
 
 <div class="container">
-
         <slot></slot>
 </div>
 
