@@ -7,5 +7,6 @@
     {
         position: absolute;
         top: 50px;
+        width: 75vw;
     }
 </style>
