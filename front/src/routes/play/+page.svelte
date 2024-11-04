@@ -94,7 +94,6 @@
 
     .container
     {
-        line-height: 250px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -110,8 +109,6 @@
         align-items: center;
         text-align: center;
     }
-
-
 
     .player
     {
@@ -148,6 +145,15 @@
     .result
     {
         font-size: 24px;
+    }
+
+    .result
+    {
+        border-radius: 7px;
+        background: rgb(252, 220, 171, 0.6);
+        width: 85%;
+        height: fit-content;
+        padding: 25px;
     }
 
     .circular-loader
