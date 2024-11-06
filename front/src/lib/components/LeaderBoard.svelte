@@ -12,9 +12,13 @@
     {/if}
 
     {#each scores as score, i}
-        <li class="item">
-            <div class="name"><img src="" alt=""/> {score.owner} </div><div class="score"> {score.value} pts.</div>
-        </li>
+        {#if i <= 100}
+            <li class="item">
+                <div class="position">{i+1}</div>
+                <div class="name"> {score.owner} </div>
+                <div class="score"> {score.value}%</div>
+            </li>
+        {/if}
     {/each}
 
 </ul>
@@ -26,7 +30,7 @@
         display: flex;
         flex-direction: column;
 
-        width: 60vw;
+        width: 75vw;
         height: 65vh;
 
         padding: 0 2vw 2vw 2vw;
@@ -38,40 +42,57 @@
         display: none;
     }
 
-    li
+    .item
     {
         display: flex;
         justify-content: space-around;
         padding: 1.25vh;
         margin: 1.5vh;
-        border: 2px solid #A1674A;
+        background-color: #fcdcab;
+        border: 3px solid #4b0611;
         border-radius: 10px;
-        background-color: #f1ecec;
-        box-shadow: 0 0 10px #343232;
+        box-shadow: 5px 5px #4b0611;
+        outline: none;
     }
 
-    li:hover
+    .item:hover
     {
+        background-color: #dd3328;
         transform: scale(1.075);
-        background-color: #F5F5F5;
+    }
+
+    .position, .name, .score
+    {
+        flex-basis: 0;
     }
 
     .name, .score
     {
-        color: black;
-        margin-left: 3vh;
+        padding-left: 7px;
+        border-left: 1px solid #A1674A;
+    }
+
+    .position
+    {
+        flex-grow: 5;
+        margin-right: 10px;
+        text-align: center;
     }
 
     .name
     {
+        word-break: break-word;
         flex-grow: 100;
-        border-right: 1px solid #A1674A;
     }
 
     .score
     {
-        flex-grow: 20;
+        flex-grow: 10;
         text-align: center;
+    }
+  
+    @media screen and (min-width: 601px) {
+        .leaderboard { width: 55vw; }
     }
 
 </style>

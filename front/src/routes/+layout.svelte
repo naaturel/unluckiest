@@ -1,33 +1,59 @@
 <script>
-
     import github_mark from '$lib/assets/github-mark-white.svg';
     import twitter_mark from '$lib/assets/twitter-mark-white.svg';
+    import leaderboard from '$lib/assets/leaderboard.svg';
+    import dice from '$lib/assets/dice.svg';
+    import about from '$lib/assets/about.svg';
+    import logo from '$lib/assets/logo.svg'
+    import arrow from '$lib/assets/arrow.svg'
 
     import {onMount} from "svelte";
+    import SplashScreen from "$lib/components/SplashScreen.svelte";
+    import PageTitle from "$lib/components/PageTitle.svelte";
 
     onMount(async () => {
-        const jQuery = await import('jquery');
-        const $ = jQuery.default;
-
-        window.$ = $;
-        window.jQuery = $;
-
-        window.$(".menu-collapsed").click(function () {
-            window.$(this).toggleClass("menu-expanded");
+        window.$(".expander").click(function () {
+            window.$(".menu").toggleClass("menu-collapsed menu-expanded");
         });
     });
 
 </script>
 
-<div class="menu-collapsed">
-    <div class="burger"></div>
-    <nav>
+<SplashScreen/>
+<div class="menu menu-collapsed">
 
-        <a href="/">Leaderboard</a>
-        <a href="/play">Play</a>
-        <a href="/about">About</a>
+        <a class="expander">
+            <img class="item-hint" src={arrow}
+                 height="30"
+                 width="30"
+                 alt="arrow">
+        </a>
 
-    </nav>
+        <a href="/" class="menu-item">
+            <img class="item-hint" src={leaderboard}
+                 height="30"
+                 width="30"
+                 alt="leaderboard">
+            <div class="item-title">Revue nécrologique</div>
+        </a>
+
+        <a href="/play" class="menu-item">
+            <img class="item-hint" src={dice}
+                 height="30"
+                 width="30"
+                 alt="dice">
+            <div class="item-title">Tenter sa chance</div>
+        </a>
+
+        <a href="/about" class="menu-item">
+            <img class="item-hint" src={about}
+                 height="30"
+                 width="30"
+                 alt="about"
+            >
+            <div class="item-title">A propos</div>
+        </a>
+
 </div>
 
 <div class="container">
@@ -35,7 +61,10 @@
 </div>
 
 <footer>
-    <a href="https://github.com/naaturel">
+
+    <img class="footer-logo" src="{logo}" alt="Logo">
+
+    <!--<a href="https://github.com/naaturel">
         <img
                 src={github_mark}
                 height="30"
@@ -49,5 +78,5 @@
                 height="30"
                 width="30"
                 alt="Twitter mark"/>
-    </a>
+    </a>-->
 </footer>

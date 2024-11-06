@@ -1,0 +1,78 @@
+.menu-collapsed, .menu-expanded {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    z-index: 9999;
+    list-style-type: none;
+    background: rgb(252, 220, 171, 0.85);
+    overflow: hidden;
+    transition: width .3s;
+}
+
+.menu-collapsed .menu-item{
+    display: none;
+}
+
+.menu-expanded, .menu-collapsed {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.menu-expanded {
+    width: 300px;
+}
+
+.expander, .menu-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 15px 30px 0 5px;
+    border-radius: 5px;
+    height: fit-content;
+    width: 250px;
+}
+
+.expander, .menu-item {
+    text-decoration: none;
+    margin: 15px 5px 5px 5px;
+    padding: 5px;
+}
+
+.item-title {
+    margin-left: 5%;
+    color: #4b0611;
+}
+
+.menu-item:hover {
+    background: #dd3328;
+}
+
+.menu-item .item-hint:hover {
+    transition: 0.3s;
+    transform: rotate(360deg);
+}
+
+.menu-expanded .expander .item-hint {
+    transform: rotate(180deg);
+}
+
+@media screen and (max-width: 600px) {
+    .menu-collapsed {
+        width: 45px
+    }
+
+    .item-hint {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media screen and (min-width: 601px) {
+    .menu-collapsed {
+        width: 60px;
+    }
+}

@@ -3,9 +3,9 @@ package be.naaturel.unluckiest.models;
 public class Score {
 
     private String owner;
-    private int value;
+    private float value;
 
-    public Score(String owner, int value){
+    public Score(String owner, float value){
         this.owner = owner;
         this.value = value;
     }
@@ -14,7 +14,7 @@ public class Score {
         return this.owner;
     }
 
-    public int getValue(){
+    public float getValue(){
         return this.value;
     }
 

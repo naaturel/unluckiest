@@ -2,6 +2,8 @@ package be.naaturel.unluckiest.entities;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
+
 @Entity(name = "Score")
 public class ScoreEntity {
 
@@ -13,6 +15,6 @@ public class ScoreEntity {
     public String owner;
 
     @Column
-    public int value;
+    public float value;
 
 }

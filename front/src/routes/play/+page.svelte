@@ -1,61 +1,98 @@
 <script>
-
-    import {onMount} from "svelte";
+    import bomb from '$lib/assets/bomb.svg';
+    import {Game, GameState} from "$lib/models/game.ts";
     import {scoreStore} from "$lib/stores/scoreStore.ts";
+    import PageTitle from "$lib/components/PageTitle.svelte";
 
-    let scores;
+    let game = new Game();
 
-    let playerName = undefined;
-    let range = 100;
-    let result = 0;
+    $: isRunning = game.state === GameState.Running;
+    $: hasBeenPlayed = game.state === GameState.Played;
 
-    onMount(async () => {
-        const jQuery = await import('jquery');
-        const $ = jQuery.default;
+    let timer;
 
-        window.$ = $;
-        window.jQuery = $;
-    });
-
-    async function roll() {
-
-        toggleLoading();
-
-        result = Math.floor(Math.random() * (range + 1));
-
-        await new Promise(r => setTimeout(r, 3000));
-
-        toggleLoading();
-        window.$(".result").text(`Result : ${result}/${range}`)
-
-        await scoreStore.add(playerName, result)
+    const debounce = inputValue => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            try{
+                validate(inputValue)
+                game.playerName = inputValue;
+            } catch (e){
+                displayError(e.message)
+            }
+        }, 150);
     }
 
-    function toggleLoading(){
-        window.$(".loader").toggleClass("disabled");
-        window.$(".player").toggleClass("disabled");
+    async function roll(){
+
+        try{
+            validate(game.playerName)
+            game.state = GameState.Running;
+            game.play()
+            await scoreStore.add(game.playerName, game.result)
+            await new Promise(r => setTimeout(r, 3000));
+            game.state = GameState.Played;
+        } catch (e){
+            displayError(e.message)
+        }
+    }
+
+    function validate(data){
+        if(!data) throw new Error("Veuillez indiquer votre nom.");
+        $scoreStore.forEach(v => {
+            if(v.owner && v.owner.toLowerCase() === data.toLowerCase()) throw new Error("Cette personne a déjà été évaluée.");
+        })
+    }
+
+    function displayError(message){
+        window.$(".player").attr('tooltip', message)
+        setTimeout(() => {
+            clearError();
+        }, 3000)
+    }
+
+    function clearError(){
+        window.$('.player').removeAttr('tooltip');
     }
 
 </script>
 
+<PageTitle>Évaluez vos chances de survie</PageTitle>
 <div class="container">
-    <div class="loader disabled">
-        <svg class="circular-loader" viewBox="0 0 30 30">
-            <circle class="loader-path" cx="15" cy="15" r="5" fill="none" stroke="#f1ecec" stroke-width="0.7" />
-        </svg>
-        <div class="info">Rolling a random numbers within range 0-{range}...</div>
-    </div>
 
-    <div class="player">
-        <input class="name" placeholder="Your name" bind:value={playerName}/>
-        <button on:click={roll}>Let's roll !</button>
-        <div class="result"></div>
-    </div>
+    {#if isRunning}
+        <div class="loader">
+            <svg class="circular-loader" viewBox="0 0 30 30">
+                <circle class="loader-path" cx="15" cy="15" r="5" fill="none" stroke="#4b0611" stroke-width="0.7" />
+            </svg>
+            <div class="info">Massacre en cours...</div>
+        </div>
+    {/if}
+    {#if !isRunning && !hasBeenPlayed}
+
+        <div class="player"
+             tooltip=""
+             flow="up">
+            <input class="name" placeholder="Nom de la victime..."
+                   bind:value={game.playerName}
+                   on:input={({ target: { value } }) => debounce(value)}
+                   on:blur={({ target: { value } }) => debounce(value)}
+            />
+            <img class="roll" src={bomb} on:click={roll} alt="Bomb"/>
+        </div>
+
+
+    {/if}
+
+    {#if hasBeenPlayed}
+        <div class="result">Vous avez {game.result}% de chance de mourir</div>
+    {/if}
+
 </div>
 
 <style>
 
-    .container, .player
+    .container
     {
         display: flex;
         flex-direction: column;
@@ -64,9 +101,13 @@
         text-align: center;
     }
 
-    .disabled
+    .player
     {
-        display: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
     }
 
     .player
@@ -74,13 +115,45 @@
         gap: 2vh;
     }
 
+    .name, .roll
+    {
+        min-width: 210px;
+        width: 22vmax;
+    }
+
     .name
     {
-        width: 17vw;
+        color: #424242;
+        background-color: #fcdcab;
+
         height: 6vh;
-        border: 2px solid #A1674A;
+        min-height: 50px;
+
+        border: 3px solid #4b0611;
         border-radius: 10px;
-        box-shadow: 0 0 10px #343232;
+        box-shadow: 5px 5px #4b0611;
+
+        text-align: left;
+
+        margin: 0 1.5vh 1.5vh 1.5vh;
+        padding-left: 30px;
+        padding-right: 30px;
+
+        outline: none;
+    }
+
+    .result
+    {
+        font-size: 24px;
+    }
+
+    .result
+    {
+        border-radius: 7px;
+        background: rgb(252, 220, 171, 0.6);
+        width: 85%;
+        height: fit-content;
+        padding: 25px;
     }
 
     .circular-loader
@@ -96,24 +169,106 @@
         height: 25vh;
     }
 
-    button
-    {
-        background-color: #f1ecec;
-
-        color: black;
-        width: 18vw;
-        height: 15vh;
-        border-radius: 10px;
-        border: 2px solid #A1674A;
-        box-shadow: 0 0 10px #343232;
-    }
-
-    .name:hover, button:hover{
+    .name:hover, .roll:hover{
         transform: scale(1.1);
     }
 
     @keyframes rotate {
         to{transform: rotate(360deg)}
+    }
+
+    /*=============TOOLTIP=============*/
+
+    /* START TOOLTIP STYLES */
+    [tooltip] {
+        position: relative; /* opinion 1 */
+    }
+
+    /* Applies to all tooltips */
+    [tooltip]::before,
+    [tooltip]::after {
+        text-transform: none; /* opinion 2 */
+
+        line-height: 1;
+        user-select: none;
+        pointer-events: none;
+        position: absolute;
+        display: none;
+        opacity: 0;
+    }
+    [tooltip]::before {
+        content: '';
+        border: 5px solid transparent; /* opinion 4 */
+        z-index: 1001; /* absurdity 1 */
+    }
+    [tooltip]::after {
+        content: attr(tooltip); /* magic! */
+
+        /* most of the rest of this is opinion */
+        text-align: center;
+
+        /*
+          Let the content set the size of the tooltips
+          but this will also keep them from being obnoxious
+          */
+        min-width: 3em;
+        max-width: 21em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 1ch 1.5ch;
+        border-radius: .3ch;
+        box-shadow: 0 1em 2em -.5em rgba(0, 0, 0, 0.35);
+        background: #333;
+        color: #fff;
+        z-index: 1000; /* absurdity 2 */
+    }
+
+    /* Make the tooltips respond to hover */
+    [tooltip]::before,
+    [tooltip]::after {
+        display: block;
+    }
+
+    /* don't show empty tooltips */
+    [tooltip='']::before,
+    [tooltip='']::after {
+        display: none !important;
+    }
+
+    /* FLOW: UP */
+    [tooltip]:not([flow])::before,
+    [tooltip][flow^="up"]::before {
+        bottom: 100%;
+        border-bottom-width: 0;
+        border-top-color: #333;
+    }
+    [tooltip]:not([flow])::after,
+    [tooltip][flow^="up"]::after {
+        bottom: calc(100% + 5px);
+    }
+    [tooltip]:not([flow])::before,
+    [tooltip]:not([flow])::after,
+    [tooltip][flow^="up"]::before,
+    [tooltip][flow^="up"]::after {
+        left: 50%;
+        transform: translate(-50%, -.5em);
+    }
+
+    /* KEYFRAMES */
+    @keyframes tooltips-vert {
+        to {
+            opacity: .9;
+            transform: translate(-50%, 0);
+        }
+    }
+
+    /* FX All The Things */
+    [tooltip]:not([flow])::before,
+    [tooltip]:not([flow])::after,
+    [tooltip][flow^="up"]::before,
+    [tooltip][flow^="up"]::after {
+        animation: tooltips-vert 300ms ease-out forwards;
     }
 
 </style>
