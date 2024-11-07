@@ -15,7 +15,7 @@
         justify-content: center;
         align-items: center;
         position: absolute;
-        z-index: 2;
+        z-index: 999999999;
         width: 100vw;
         height: 100vh;
         background-color: #4b0611;

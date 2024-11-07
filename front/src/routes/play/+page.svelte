@@ -3,6 +3,7 @@
     import {Game, GameState} from "$lib/models/game.ts";
     import {scoreStore} from "$lib/stores/scoreStore.ts";
     import PageTitle from "$lib/components/PageTitle.svelte";
+    import { goto } from '$app/navigation';
 
     let game = new Game();
 
@@ -32,6 +33,9 @@
             await scoreStore.add(game.playerName, game.result)
             await new Promise(r => setTimeout(r, 3000));
             game.state = GameState.Played;
+
+            redirectAfterPlaying();
+
         } catch (e){
             displayError(e.message)
         }
@@ -53,6 +57,12 @@
 
     function clearError(){
         window.$('.player').removeAttr('tooltip');
+    }
+
+    function redirectAfterPlaying(){
+        setTimeout(() => {
+            goto('/');
+        }, 3000)
     }
 
 </script>
@@ -80,7 +90,6 @@
             />
             <img class="roll" src={bomb} on:click={roll} alt="Bomb"/>
         </div>
-
 
     {/if}
 
