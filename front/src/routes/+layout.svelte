@@ -20,6 +20,7 @@
 </script>
 
 <SplashScreen/>
+
 <div class="menu menu-collapsed">
 
         <a class="expander">
@@ -79,4 +80,5 @@
                 width="30"
                 alt="Twitter mark"/>
     </a>-->
+
 </footer>
