@@ -1,6 +1,10 @@
 <script>
-
 import PageTitle from "$lib/components/PageTitle.svelte";
+import github_mark from '$lib/assets/github-mark.svg';
+import twitter_mark from '$lib/assets/twitter-mark.svg';
+import instagram_mark from '$lib/assets/instagram-mark.svg';
+import etsy_mark from '$lib/assets/etsy-mark.svg';
+
 </script>
 <PageTitle>A propos</PageTitle>
 
@@ -28,11 +32,44 @@ import PageTitle from "$lib/components/PageTitle.svelte";
         <div class="section">
             <h2>Design</h2>
             <p>Arwen Hirsoux</p>
+
+            <div class="links">
+                <a href="https://www.instagram.com/yanderescreations">
+                    <img src="{instagram_mark}"
+                         height="25"
+                         width="25"
+                         alt="Instagram mark"/>
+                </a>
+                <a href="https://www.etsy.com/fr/shop/YanderesCreations?ref=l2-about-shopname&from_page=listing">
+                    <img src="{etsy_mark}"
+                         height="25"
+                         width="25"
+                         alt="Etsy mark"/>
+                </a>
+            </div>
+
         </div>
 
         <div class="section">
             <h2>Développement</h2>
             <p>Laurent Crema</p>
+
+            <div class="links">
+                <a href="https://github.com/naaturel">
+                    <img src={github_mark}
+                        height="25"
+                        width="25"
+                        alt="Github mark"/>
+                </a>
+
+                <a href="https://twitter.com/naaturel_">
+                    <img src="{twitter_mark}"
+                        height="25"
+                        width="25"
+                        alt="Twitter mark"/>
+                </a>
+            </div>
+
         </div>
     </div>
 
@@ -66,6 +103,7 @@ import PageTitle from "$lib/components/PageTitle.svelte";
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        padding: 10px;
     }
 
 </style>
