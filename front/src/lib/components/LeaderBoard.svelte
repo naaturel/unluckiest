@@ -5,7 +5,8 @@
 </script>
 
 <ul class="leaderboard">
-
+	
+    
     {#if scores.length === 0}
         No scores for now...
     {/if}
@@ -89,7 +90,7 @@
         flex-grow: 10;
         text-align: center;
     }
-
+  
     @media screen and (min-width: 601px) {
         .leaderboard { width: 55vw; }
     }

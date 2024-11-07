@@ -10,6 +10,7 @@
         scoreStore.load(data.leaderboard)
     })
 
+
 </script>
 
 <PageTitle>Qui va y passer ?</PageTitle>
