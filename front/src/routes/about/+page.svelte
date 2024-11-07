@@ -3,7 +3,7 @@ import PageTitle from "$lib/components/PageTitle.svelte";
 import github_mark from '$lib/assets/github-mark.svg';
 import twitter_mark from '$lib/assets/twitter-mark.svg';
 import instagram_mark from '$lib/assets/instagram-mark.svg';
-import etsy_mark from '$lib/assets/etsy-mark.svg';
+import linktree_mark from '$lib/assets/linktree-mark.svg';
 
 </script>
 <PageTitle>A propos</PageTitle>
@@ -40,8 +40,8 @@ import etsy_mark from '$lib/assets/etsy-mark.svg';
                          width="25"
                          alt="Instagram mark"/>
                 </a>
-                <a href="https://www.etsy.com/fr/shop/YanderesCreations?ref=l2-about-shopname&from_page=listing">
-                    <img src="{etsy_mark}"
+                <a href="https://linktr.ee/ArwenHirsoux">
+                    <img src="{linktree_mark}"
                          height="25"
                          width="25"
                          alt="Etsy mark"/>
