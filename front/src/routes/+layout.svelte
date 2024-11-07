@@ -1,6 +1,4 @@
 <script>
-    import github_mark from '$lib/assets/github-mark-white.svg';
-    import twitter_mark from '$lib/assets/twitter-mark-white.svg';
     import leaderboard from '$lib/assets/leaderboard.svg';
     import dice from '$lib/assets/dice.svg';
     import about from '$lib/assets/about.svg';
@@ -64,21 +62,5 @@
 <footer>
 
     <img class="footer-logo" src="{logo}" alt="Logo">
-
-    <!--<a href="https://github.com/naaturel">
-        <img
-                src={github_mark}
-                height="30"
-                width="30"
-                alt="Github mark"/>
-    </a>
-
-    <a href="https://twitter.com/naaturel_">
-        <img
-                src="{twitter_mark}"
-                height="30"
-                width="30"
-                alt="Twitter mark"/>
-    </a>-->
 
 </footer>
