@@ -16,6 +16,7 @@
         clearTimeout(timer);
         timer = setTimeout(() => {
             try{
+                sanitize(inputValue)
                 validate(inputValue)
                 game.playerName = inputValue;
             } catch (e){
@@ -27,6 +28,7 @@
     async function roll(){
 
         try{
+            game.sanitizeName();
             validate(game.playerName)
             game.state = GameState.Running;
             game.play()
@@ -39,6 +41,13 @@
         } catch (e){
             displayError(e.message)
         }
+    }
+
+    function sanitize(data){
+        return data
+            .trim()
+            .replace(/\s+/g, ' ')
+            .replace(/[^a-zA-Z0-9\- ]/g, '');;
     }
 
     function validate(data){

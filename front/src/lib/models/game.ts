@@ -20,6 +20,13 @@ export class Game {
         return false;
     }
 
+    public sanitizeName() {
+        this.playerName = this.playerName
+            .trim()
+            .replace(/\s+/g, ' ')
+            .replace(/[^a-zA-Z0-9\- ]/g, '');
+    }
+
     private getRandomNumber() : number{
         let unit = Math.floor(Math.random() * (this.range + 1));
 
