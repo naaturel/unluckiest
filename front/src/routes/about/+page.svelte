@@ -34,7 +34,7 @@ import linktree_mark from '$lib/assets/linktree-mark.svg';
             <p>Arwen Hirsoux</p>
 
             <div class="links">
-                <a href="https://www.instagram.com/yanderescreations">
+                <a href="https://www.instagram.com/yanderedraws">
                     <img src="{instagram_mark}"
                          height="25"
                          width="25"
