@@ -51,18 +51,3 @@ services:
       - unluckiest_network
     depends_on:
       - api
-
-  reverse_proxy:
-    container_name : reverse_proxy
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
-    ports:
-    - "80:80"
-    - "443:443"
-    volumes:
-      - ./ssl/:/etc/ssl/
-    networks:
-      - unluckiest_network
-    depends_on:
-      - webapp
