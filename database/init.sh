@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # Check if required environment variables are set
 : "${DB_NAME:?Environment variable DB_NAME is required}"
 : "${DB_USER:?Environment variable DB_USER is required}"
