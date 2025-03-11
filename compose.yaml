@@ -1,3 +1,6 @@
+volumes:
+  unluckiest_database:
+
 networks:
   unluckiest_network:
     driver: bridge
@@ -5,6 +8,7 @@ networks:
 services:
 
   database:
+    container_name: unluckiest_database
     build:
       context : ./database
       dockerfile : Dockerfile
